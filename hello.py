@@ -9,7 +9,7 @@ def exit_with_log(code, message=None):
 
 # Check for "fail" in environment variable
 env_var = os.getenv("MY_ENV_VAR", "Value not found")
-if env_var == "Failt":
+if env_var == "Fail":
     exit_with_log(1, "Error: MY_ENV_VAR is set to 'Fail'!")
 
 # Check for "fail" in command line arguments
