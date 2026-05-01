@@ -4,6 +4,10 @@ pipeline{
         stage('build'){
             steps{
                 echo "Building"
+                sh 'pwd'
+                sh 'whoami'
+                sh 'groups'
+                sh 'docker version'
                 sh 'docker build -t python-first-test:latest .'
             }
         }
