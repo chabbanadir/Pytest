@@ -19,11 +19,12 @@ pipeline{
                 sh 'docker run -e MY_ENV_VAR=Fail python-first-test:latest'
             }
         }
-    }
-    stage('logs'){
+        stage('logs'){
         steps{
             echo "Loggins"
             sh 'docker logs python-first-test:latest'
         }
     }
+    }
+    
 }
