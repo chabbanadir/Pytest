@@ -4,6 +4,8 @@ pipeline{
         stage('build'){
             steps{
                 echo "Building"
+                sh 'sudo apt update'
+                sh 'sudo apt install docker.io -y'
                 sh 'docker build -t python-first-test:latest .'
             }
         }
