@@ -16,15 +16,16 @@ pipeline{
         stage('run with env'){
             steps{
                 echo "Running with environment variable"
-                sh 'docker run -e MY_ENV_VAR=Fail python-first-test:latest'
+                sh 'docker rm -f my-test-app || true'
+                sh 'docker run --name my-test-app -e MY_ENV_VAR=Fail python-first-test:latest'
             }
         }
         stage('logs'){
-        steps{
-            echo "Loggins"
-            sh 'docker logs python-first-test:latest'
+            steps{
+                echo "Logging"
+                sh 'docker logs my-test-app'
+            }
         }
-    }
     }
     
 }
