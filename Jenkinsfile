@@ -1,8 +1,8 @@
 pipeline{
     agent {
         docker {
-            image 'docker:latest'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
+            image 'docker:24-cli'
+            args '--group-add 984 -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     stages{
