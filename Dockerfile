@@ -4,8 +4,11 @@ FROM python:3.9-slim
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY hello.py .
+# Install pytest
+RUN pip install pytest
+
+# Copy everything into the container
+COPY . .
 
 # Define an environment variable (can be overridden at runtime)
 ENV MY_ENV_VAR="Docker Default"

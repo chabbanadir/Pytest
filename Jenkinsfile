@@ -19,6 +19,13 @@ pipeline{
                 '''
             }
         }
+        stage('test') {
+            steps {
+                echo "Testing with Pytest"
+                sh 'docker build -t python-first-test:latest .'
+                sh 'docker run --rm python-first-test:latest pytest'
+            }
+        }
         stage('run'){
             steps{
                 echo "Running"
