@@ -22,8 +22,14 @@ pipeline{
         stage('test') {
             steps {
                 echo "Testing with Pytest"
+                sh 'mkdir -p target'
                 sh 'docker build -t python-first-test:latest .'
-                sh 'docker run --rm python-first-test:latest pytest'
+                sh 'docker run --rm -v $(pwd)/target:/app/target python-first-test:latest pytest --junitxml=target/report.xml'
+            }
+            post {
+                always {
+                    junit '**/target/*.xml'
+                }
             }
         }
         stage('run'){
