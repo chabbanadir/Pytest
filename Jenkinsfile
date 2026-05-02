@@ -2,16 +2,21 @@ pipeline{
     agent {
         docker {
             image 'docker:24-cli'
-            args '--group-add 984 -v /var/run/docker.sock:/var/run/docker.sock -e HOME=/tmp'
+            args '''
+                --group-add 984 
+                -v /var/run/docker.sock:/var/run/docker.sock 
+                -e HOME=/home/jenkins
+            '''
         }
     }
-    stages{
-        stage('build'){
-            steps{
-                echo "Building"
-                sh 'pwd'
-                sh 'docker version'
-                sh 'docker build -t python-first-test:latest .'
+
+    stages {
+        stage('prepare env') {
+            steps {
+                sh '''
+                    mkdir -p /home/jenkins
+                    chown -R 1000:1000 /home/jenkins
+                '''
             }
         }
         stage('run'){
