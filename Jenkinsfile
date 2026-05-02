@@ -14,7 +14,7 @@ pipeline{
         stage('run'){
             steps{
                 echo "Running"
-                sh 'docker run --rm python-first-test:latest'
+                sh 'docker rn --rm python-first-test:latest'
             }
         }
         stage('run with env'){
