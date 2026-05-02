@@ -2,7 +2,7 @@ pipeline{
     agent {
         docker {
             image 'docker:24-cli'
-            args '--group-add 984 -v /var/run/docker.sock:/var/run/docker.sock -e HOME=/home/jenkins'
+            args '--group-add 984 -v /var/run/docker.sock:/var/run/docker.sock -e HOME=/tmp'
         }
     }
     stages{
